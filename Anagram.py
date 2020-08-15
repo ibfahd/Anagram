@@ -15,13 +15,17 @@ def anagram(s):
         changes = 0
         s1 = Counter(s[:sLen//2])
         s2 = Counter(s[sLen//2:])
-        for c in s1:
+        cs = []
+        for c in s[:sLen//2]:
             if not c in s2:
-               changes += 1
-            else:
-                if s1[c] != s2[c]:
-                    changes += 1
+                changes += 1
+            elif not c in cs:
+                diff = s1[c] - s2[c]
+                if diff > 0:
+                   changes += diff 
+                cs.append(c)
     return changes
+
 
 if __name__ == '__main__':
 
